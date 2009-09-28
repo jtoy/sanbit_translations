@@ -1,0 +1,16 @@
+<div align="center">
+  <% unless @translation_keys.blank? %>
+    Search Result
+    <table border="1" width="100%">
+      <th>Key</th>
+      <th>Translations count</th>
+      <th> Translations </th>
+      <th></th>
+      <tbody>
+        <%= render :partial => 'search', :locals => {:translation_keys => @translation_keys}%>
+      </tbody>
+    </table>
+  <% else %>
+    Nothing found!
+  <% end %>
+</div>

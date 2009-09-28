@@ -1,0 +1,7 @@
+= render :partial => "nav"
+
+.border.filter_pa
+  - @translations.each do |t|
+    = "Default:  '#{t.translation_key.default}'  => Your translation  is:   '#{t.content}'"
+
+= will_paginate @translations

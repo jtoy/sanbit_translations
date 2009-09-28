@@ -1,0 +1,30 @@
+<div align="center">
+  <%= page_entries_info @translation_keys if @translation_keys.respond_to?(:total_pages) %>
+  | Translations total count : <%= @translations_count %>
+  | <%= link_to "New Translation Key", new_translation_key_path, :id => "new_tk_link" %>
+</div>
+<div class="search" align="center">
+  <div id="search_translation_key" style="display: inline-block">
+    Translation Key : <span style="display: inline-block"><% form_tag '/admin/translation_keys/search', :method => "get" do %>
+      <%= text_field_tag 'search_tk' %>
+      <%= submit_tag t("search", :css => false), :id => "search_tk_submit" %>
+      <% end %></span>
+  </div>
+  &nbsp&nbsp
+  <div id="search_translation" style="display: inline-block">
+    Translation Content : <span style="display: inline-block"> <% form_tag '/admin/translation_keys/search', :method => 'get' do %>
+      <%= text_field_tag 'search_t' %>
+      <%= submit_tag t("search", :css => false), :id => "search_t_submit" %>
+      <% end %></span>
+  </div>
+</div>
+<div id="new_tk"></div>
+<table border="1" width="100%">
+  <th>Key</th> <th>Translations count</th> <th> Translations </th><th></th>
+  <tbody>
+    <% @translation_keys.each do |tk| %>
+    <tr><%= render :partial => 'translation_key', :locals => {:tk => tk}%></tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @translation_keys %>

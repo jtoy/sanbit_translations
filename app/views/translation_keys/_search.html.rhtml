@@ -1,0 +1,9 @@
+<% unless translation_keys.blank? %>
+  <% translation_keys.each do |tk| %>
+  <tr class="search_tk"><%= render :partial => 'translation_key', :locals => {:tk => tk}%></tr>
+  <% end %>
+<% else %>
+  <tr align="center" class="search_tk">
+    <td colspan="4">Nothing Found!</td>
+  </tr>
+<% end %>

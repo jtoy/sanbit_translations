@@ -1,0 +1,24 @@
+Submit a Translation in <%= @locale %>
+<div>
+  Default:  "<%= @translation_key.default %>"
+</div>
+<% if @translation_key.description%>
+  <div>
+    Description: <%= @translation_key.description %>
+  </div>
+<% end %>
+<% unless @translation_key.translations.locale(@l).blank? %>
+  <div>
+    Vote on other translations:
+    <% @translation_key.translations.locale(@l).each do |t| %>
+      <%= render :partial => "vote_translation", :locals => {:object => t} %>
+    <% end %>
+  </div>
+<% end %>
+
+Submit a translation:
+<% form_for(@translation,:html => {:id => "translation"}) do |f| %>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :key %>
+  <%= f.submit %>
+<% end %>

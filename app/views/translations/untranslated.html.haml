@@ -1,0 +1,14 @@
+= render :partial => "nav"
+
+.border.filter_pa
+  .div_result
+    = page_entries_info @translation_keys, :entry_name => "" if @translation_keys.respond_to?(:total_pages)
+
+  %div
+    - @translation_keys.each do |tk|
+      %div
+        = tk.default
+      %a.translatable{ :key => "#{tk}"}
+        Add a new translation
+
+    = will_paginate @translation_keys

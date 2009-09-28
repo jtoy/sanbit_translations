@@ -1,0 +1,4 @@
+postgresql:
+  adapter: postgresql
+  host: localhost
+  database: tk_test

@@ -1,0 +1,7 @@
+<div><%= translation %>   <%#= render :partial => 'users/info',:locals => {:user => translation.user,:language => nil}%></div>
+
+<% if translation.user == current_user%>
+  <a class="facebox" href="/translations/edit/<%= translation.to_param%>">edit</a>
+<% else %>
+  <a href="/translations/vote?v=1&key=<%= translation.key %>"class="get">vote up<a>  <a href="/translations/vote?v=-1&key=<%= translation.key %>" class="get">vote down</a>
+<% end %>

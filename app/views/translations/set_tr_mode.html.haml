@@ -1,0 +1,20 @@
+.round_box
+  .top
+    .r1
+    .r2
+    .r3
+    .r4.title
+      Turn on translation mode?
+  .box
+    .content
+      %p
+        Turning on translation mode will allow you to right click on any strings with an underline and allow you to translate it.
+      .div_inline
+        = button_to "Allow", url_for(:action => 'set_tr_mode', :translation_mode => 't') 
+
+      %a.div_inline{:href=>"/"}
+        Cancel
+  .bottom
+    .r3
+    .r2
+    .r1

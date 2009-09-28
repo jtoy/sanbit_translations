@@ -1,0 +1,15 @@
+%ul.ul_translations
+  %li= link_to "Untranslated", {:action => "untranslated"}, :id => "untranslated"
+  %li= link_to "My Translations", {:action => "mine"}, :id => "my_translations"
+  %li= link_to "To Vote on Translations", {:action => "to_vote"}, :id => "to_vote"
+  / %li= link_to "Poorly Translated", {:action => ""}, :id => "poorly_translated"
+  %li= link_to "browse by page", {:action => ""}, :id => "browse_by_page"
+
+%form{ :action => '/translations/search', :method => 'get' }
+  Search for:
+  %input{ :type => 'text', :name => 'q', :value => "#{@q}" }
+  in:
+  %select{:name=>"sf"}
+    = options_for_select @translate_options
+
+  %input{ :type => 'submit', :value => 'Search' }

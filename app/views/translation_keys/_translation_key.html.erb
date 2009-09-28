@@ -1,0 +1,9 @@
+<% unless tk.blank? %>
+  <td>
+    <%= tk.key %> &nbsp&nbsp <%= link_to("Add a translation", {:action => :add_translation, :key => tk.key}, :id => "add_translation_#{tk.id}") %>
+    <div class="new_translation"></div>
+  </td>
+  <td align="center"><%= tk.translations.size %></td>
+  <td><%= render :partial => 'translation', :locals => {:tk => tk} %></td>
+  <td><%= link_to "Delete", {:action => "tk_destroy", :tk_id => tk.id}, :confirm => "Are you sure?", :class => "tk_destroy" %></td>
+<% end %>

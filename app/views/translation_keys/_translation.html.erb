@@ -1,0 +1,19 @@
+<% tk.translations.group_by {|t| t.locale}.each_pair do |key, value| %>
+<div class="translation">
+  <%= Locale.find_by_value(key) %>
+  <ol>
+    <% value.each do |t| %>
+    <li class="<%= 'admin_search_translations' if !@translations.blank? && @translations.include?(t) %>">"<%= t.content %>" 
+           | Override: <%= t.override %> &nbsp <%= link_to("Set to True", {:action => "set_override_true", :t_id => t.id}, :class => "set_override_true") unless t.override %>
+           | <a href="" class="edit_t" toggletarget="#t_<%= t.id %>">Edit</a>
+           <div id="t_<%= t.id %>" style="display:none;">
+             <% form_for t, {:url=>"/admin/translation_keys/#{t.id}"} do |f|%>
+              <%= f.text_field :content%>
+              <%= f.submit%>
+             <% end %>
+            </div>
+           | <%= link_to "Delete", {:action => "translation_destroy", :t_id => t.id}, :confirm => "Are you sure?", :class => "tr_destroy"%></li>
+    <% end %>
+  </ol>
+</div>
+<% end %>

@@ -1,0 +1,50 @@
+.round_box
+  .top
+    .r1
+    .r2
+    .r3
+    .r4.title
+      &nbsp;
+  .box
+    .content
+      = render :partial => 'nav'
+
+      .filter_pa
+        = button_to "Remove translations", url_for(:action => 'set_tr_mode', :translation_mode => 'f')
+
+      .filter_pa
+        Help Translate into a different language:
+        %form.div_inline
+          %select{:name=>"tr_locale"}
+            = options_for_select Locale.all.collect{|x| [x.native,x.value] }, @l
+          %input{:type=>"submit"}
+        
+      .filter_pa
+        %label{:for=>"top_contributes"}
+          Top Contributers:
+        - @top_contributers.each do |u|
+          = render :partial => "/users/info",:locals => {:language=> u.speaks.first, :user => u}
+
+      .filter_pa
+        Statistics :
+        
+        Total Translations: 
+        = @total
+        | 
+        Translated by you: 
+        = @mine 
+        |
+        Translations Submitted: 
+        = @submitted
+        |
+        Untranslated Phrases:
+        = @untranslated 
+      
+  .bottom
+    .r3
+    .r2
+    .r1
+
+
+
+

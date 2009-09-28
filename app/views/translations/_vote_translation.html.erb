@@ -1,0 +1,15 @@
+<div class="vote_translation clearfix">
+  <%= object.content %>
+  <span class='nt_row'>
+    <% if !object.voted_by? current_user %>
+      <% link_to({}, {:href => "/translations/vote?id=#{object.id}&v=1", :title => "vote up", :class => 'vote'}) do %>
+        <img src="/images/up.gif"/>
+      <% end %>
+      <% link_to({}, {:href => "/translations/vote?id=#{object.id}&v=-1", :title => "vote down", :class => 'vote'}) do %>
+        <img src="/images/down.gif"/>
+      <% end %>
+    <%end%>
+  </span>
+  <span class='nt_strings'> (total votes: <%= object.translation_votes.size %> | agree:  <%= object.translation_votes.vote_type(1).size %> | against: <%= object.translation_votes.vote_type(-1).size %>)
+  </span>
+</div>

@@ -1,0 +1,19 @@
+= render :partial => "nav"
+- unless @q.blank?
+  = "Displaying #{@per_page} phrases out of #{@translation_count} in #{@current_locale.native}."
+  = will_paginate @translations unless @translations.blank?
+  - @translations.each do |t|
+    .clearfix
+      .clearfix
+        .left.t_link
+          %a.translatable{:key => t.key}== Right click to add a translation
+        .left
+          = t.translation_key.default
+          .sub_Description
+            = t.translation_key.description || "No Description"
+      .clearfix
+        - t.translation_key.translations.locale(current_user.translation_locale).each do |tk_t|
+          = render :partial => "vote_translation", :locals => {:object => tk_t}
+  = will_paginate @translations unless @translations.blank?
+- else
+  = "Search for #{@q} returns 0 results."

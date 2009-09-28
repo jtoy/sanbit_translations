@@ -1,0 +1,20 @@
+<div class="div_result">
+  <%= page_entries_info translation_keys, :entry_name => "" if translation_keys.respond_to?(:total_pages) %>
+</div>
+<% translation_keys.each do |tk| %>
+  <div class='clearfix'>
+    <div class='clearfix'>
+      <div class="left t_link"><a key="<%= tk %>" class="translatable">Right click to add a translation</a></div>
+      <div class="left">
+        <%= tk.default %>
+        <div class="sub_Description"><%= tk.description || "No Description" %></div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <% tk.translations.locale(current_user.translation_locale).each do |t| %>
+        <%= render :partial => "vote_translation", :locals => {:object => t} %>
+      <% end %>
+    </div>
+</div>
+<% end %>
+<%= will_paginate translation_keys %>

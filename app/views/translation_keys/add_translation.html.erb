@@ -1,0 +1,17 @@
+<% form_for :translation, @translation, :url => {:action => "translation_create"} do |f| %>
+  <%= f.error_messages %>
+  
+  <%= f.hidden_field :key %>
+  <p>
+    <%=f.label :locale %>:
+    <select name="translation[locale]">
+      <%= options_for_select Locale.active.collect{|x| [x.native,x.value] }, @locale %>
+    </select>
+  </p>
+  <p>
+    <%= f.label :content %>: <br />
+    <%= f.text_area :content, :size => "40x3" %>
+  </p>
+  <%= f.submit %>
+  <input type="button" class="cancle_translation" value="Cancel" />
+<% end %>

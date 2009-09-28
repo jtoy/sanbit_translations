@@ -1,0 +1,22 @@
+h1. Ruby I18n gem
+
+This is a rails plugin that allows users of your site to contribute translations like the style of facebook. 
+
+h3. Usage
+
+Clone the repo as a plugin into your Rails app.
+
+<pre>
+  # in initializer or enviroment.rb
+  I18n.backend = I18n::Backend::Fast.new
+</pre>
+When using the Translation Key Controller, you must implement an admin_required method.
+
+
+h2. Authors
+
+* "Jason Toy":http://jtoy.net
+
+h2. License
+
+MIT License. See the included MIT-LICENCE file.
